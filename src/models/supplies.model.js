@@ -63,7 +63,7 @@ export const supplies = sequelize.define('Supplies', {
             },
             isFloat: true,
             min: 0,
-            max: 9999
+            max: 99999
         },
     },
 

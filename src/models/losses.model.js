@@ -1,7 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../db/dataBase.js";
 
-export const losses = sequelize.define('Losses', {
+export const losses = sequelize.define('Losses', { 
 
     ID_Losses: {
         type: DataTypes.INTEGER,
