@@ -4,6 +4,7 @@ import bcrypt from 'bcryptjs';
 import { createAccessToken } from '../libs/jwt.js';
 import { Op } from 'sequelize';
 import { supplier } from '../models/supplier.model.js';
+import Cookies from 'js-cookie';
 
 export const getUsers = async (req, res) => {
     try {

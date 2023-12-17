@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from '../config.js';
 import transporter from '../transporter.cjs';
 import { getUser } from './user.controller.js';
-
+import Cookies from 'js-cookie';
 // --------------------------- Login ------------------------------------- //
 
 export const getCurrentUser = async (req, res) => {
@@ -111,7 +111,9 @@ export const forgotPassword = async (req, res) => {
         }
 
         const resetToken = jwt.sign({ id: foundUser.ID_User }, TOKEN_SECRET, { expiresIn: '1h' });
-        const resetUrl = ` http://localhost:5173/newPassword/${foundUser.ID_User}`;
+        const resetUrl = `https://demeter-front-production.up.railway.app/newPassword/${foundUser.ID_User}`;
+
+        
 
         // Opciones del correo
         const mailOptions = {
