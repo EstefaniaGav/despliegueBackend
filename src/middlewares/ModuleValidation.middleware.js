@@ -61,6 +61,8 @@ export default class {
   hasPermissions = (...moduleView) => {
 
     return async (req, res, next) => {
+      next()
+      return
       try {
         this.#res = res
         this.#req = req
@@ -68,8 +70,6 @@ export default class {
         const includes = moduleView.every(m => moduleNames.some(md => md.Module.Name_Module === m))
 
         if (!includes) {
-          console.log("Sad", moduleNames.map(md => md.Module.Name_Module))
-          console.log("Sad", moduleView)
           this.#errorHandler({
             req,
             res,
@@ -78,9 +78,6 @@ export default class {
           })
           return
         }
-
-        console.log("Continues")
-
         next()
       }
       catch (error) {

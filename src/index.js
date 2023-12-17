@@ -1,11 +1,13 @@
 import app from './app.js'
 import { sequelize } from './db/dataBase.js'
 
+const PORT = process.env?.PORT || 5080
+const HOST = process.env?.HOST || "127.0.0.1"
 async function main() {
     try{
         await sequelize.sync({force: false})
-        app.listen(5080);
-        console.log('Server on port ', 5080);
+        app.listen(PORT, HOST);
+        console.log('Server on port ', PORT);
     } catch (error) {
         console.error('Unable to connect to the database:', error);
     }

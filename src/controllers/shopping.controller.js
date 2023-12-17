@@ -215,6 +215,28 @@ export const disableShop = async (req, res) => {
     }
 };
 
+export const toggleStateShoppingByDate = async (req, res) => {
+    let isToggled = true
+    try {
+        const { date, bool } = req.params;
+
+        const updatedShop = await shopping.update({ State: Boolean(bool === "true") }, {
+            where: {
+                Datetime: date
+            },
+            returning: true
+        });
+
+        res.json({
+            ...updatedShop,
+            isToggled
+        });
+    } catch (error) {
+        isToggled = false
+        return res.status(500).json({ message: error.message, isToggled });
+    }
+};
+
 // export const updateShopping = async (req, res) => {
 //     const { id } = req.params;
 //     try {
