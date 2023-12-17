@@ -22,7 +22,11 @@ import moduleRoutes from './routes/module.routes.js';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: 'https://demeter-front-production.up.railway.app',
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
 
 app.use(morgan('dev'));
 app.use(express.json());
