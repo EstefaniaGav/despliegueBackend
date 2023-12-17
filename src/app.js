@@ -26,7 +26,7 @@ app.use(cors({
     origin: 'https://demeter-front-production.up.railway.app',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    // credentials: true
 }));
 
 app.use(morgan('dev'));
