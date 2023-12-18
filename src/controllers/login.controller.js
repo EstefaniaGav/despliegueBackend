@@ -110,7 +110,7 @@ export const forgotPassword = async (req, res) => {
         }
 
         const resetToken = jwt.sign({ id: foundUser.ID_User }, TOKEN_SECRET, { expiresIn: '1h' });
-        const resetUrl = `https://demeter-front-production.up.railway.app//newPassword/${foundUser.ID_User}`;
+        const resetUrl = `https://demeter-front-production.up.railway.app/newPassword/${foundUser.ID_User}`;
 
 
 
