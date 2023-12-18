@@ -5,14 +5,18 @@ import jwt from 'jsonwebtoken';
 import { TOKEN_SECRET } from '../config.js';
 import transporter from '../transporter.cjs';
 import { getUser } from './user.controller.js';
-import Cookies from 'js-cookie';
 // --------------------------- Login ------------------------------------- //
 
 export const getCurrentUser = async (req, res) => {
+
+    const newUser = user.findOne()
+
+    res.json(newUser)
+    return
     const token = req?.cookies?.token;
-    const user = jwt.decode(token, TOKEN_SECRET) || {};
+    const userT = jwt.decode(token, TOKEN_SECRET) || {};
     try {
-        const userId = user?.id || user?.ID_User || 4;
+        const userId = userT?.id || userT?.ID_User || 4;
 
         if (!userId) {
             return res.status(401).json({ error: "No se pudo obtener el ID del usuario" });
