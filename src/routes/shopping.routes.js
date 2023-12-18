@@ -1,6 +1,6 @@
 import { Router } from 'express';
 
-import { getShopping, getShop, createShopping, disableShop, createMultipleShopping, getShopingAndShopingDetails, getShopingByProvider, getShoppingAndSuppliesBySupplierId, getShoppingAndSuppliesBySupplierIdAndDate, getShoppingAndSuppliesBySupplierIdAndDateTime } from '../controllers/shopping.controller.js'
+import { getShopping, getShop, createShopping, disableShop, createMultipleShopping, getShopingAndShopingDetails, getShopingByProvider, getShoppingAndSuppliesBySupplierId, getShoppingAndSuppliesBySupplierIdAndDate, getShoppingAndSuppliesBySupplierIdAndDateTime, toggleStateShoppingByDate } from '../controllers/shopping.controller.js'
 
 import { authRequired } from '../middlewares/validateToken.js'
 import ModuleValidationMiddleware from '../middlewares/ModuleValidation.middleware.js'
@@ -17,6 +17,10 @@ const moduleValidation = new ModuleValidationMiddleware(
         })
     }
 )
+
+router.put("/shopping/toggleStateShoppingByDate/:date/:bool(true|false)", authRequired, moduleValidation.hasPermissions(
+    moduleValidation.MODULES.SHOPPING
+), toggleStateShoppingByDate);
 
 router.get('/shopping', authRequired, moduleValidation.hasPermissions(
     moduleValidation.MODULES.SHOPPING
