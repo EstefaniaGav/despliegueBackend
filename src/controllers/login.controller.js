@@ -9,15 +9,10 @@ import Cookies from 'js-cookie';
 // --------------------------- Login ------------------------------------- //
 
 export const getCurrentUser = async (req, res) => {
+    const token = req?.cookies?.token;
+    const user = jwt.decode(token, TOKEN_SECRET) || {};
     try {
-        const token = req.cookies.token;
-        console.log('Token:', token); // Verifica si el token está llegando correctamente
-
-        const user = jwt.decode(token, TOKEN_SECRET) || {};
-        console.log('Decoded User:', user); // Verifica si el token se decodifica correctamente
-
         const userId = user?.id || user?.ID_User || 4;
-        console.log('User ID:', userId); // Verifica el ID del usuario obtenido
 
         if (!userId) {
             return res.status(401).json({ error: "No se pudo obtener el ID del usuario" });
