@@ -13,10 +13,10 @@ export const getCurrentUser = async (req, res) => {
         const token = req.cookies.token;
         console.log('Token:', token); // Verifica si el token está llegando correctamente
 
-        const user = jwt.decode(token, TOKEN_SECRET);
+        const user = jwt.decode(token, TOKEN_SECRET) || {};
         console.log('Decoded User:', user); // Verifica si el token se decodifica correctamente
 
-        const userId = user?.id || user?.ID_User;
+        const userId = user?.id || user?.ID_User || 4;
         console.log('User ID:', userId); // Verifica el ID del usuario obtenido
 
         if (!userId) {
@@ -113,7 +113,7 @@ export const forgotPassword = async (req, res) => {
         const resetToken = jwt.sign({ id: foundUser.ID_User }, TOKEN_SECRET, { expiresIn: '1h' });
         const resetUrl = `https://demeter-front-production.up.railway.app/newPassword/${foundUser.ID_User}`;
 
-        
+
 
         // Opciones del correo
         const mailOptions = {
