@@ -145,6 +145,7 @@ export const getShoppingAndSuppliesBySupplierIdAndDate = async (req, res) => {
 export const getShopingByProvider = async (req, res) => {
     try {
 
+        await sequelize.query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
         const shoppingBySupplier = await shopping.findAll({
             include: [{
                 model: supplier,
