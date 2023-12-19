@@ -143,23 +143,43 @@ export const getShoppingAndSuppliesBySupplierIdAndDate = async (req, res) => {
     }
 };
 
+// export const getShopingByProvider = async (req, res) => {
+//     try {
+
+//         const shoppingBySupplier = await shopping.findAll({
+//             include: [{
+//                 model: supplier,
+//                 required: true
+//             }],
+//             // group: "Datetime"
+//         })
+
+//         res.json(shoppingBySupplier);
+//     } catch (error) {
+//         return res.status(500).json({ message: error.message });
+//     }
+// };
+
 export const getShopingByProvider = async (req, res) => {
     try {
-
         const shoppingBySupplier = await shopping.findAll({
+            attributes: [
+                'Datetime',  // Incluye la columna utilizada en GROUP BY
+                [sequelize.fn('COUNT', sequelize.col('ID_Shopping')), 'num_shoppings'], // Ejemplo de función de agregación
+                // Añade otras columnas que estás seleccionando aquí
+            ],
             include: [{
                 model: supplier,
                 required: true
             }],
-            // group: "Datetime"
-        })
+            group: ["Datetime"]  // Incluye todas las columnas utilizadas en GROUP BY
+        });
 
         res.json(shoppingBySupplier);
     } catch (error) {
         return res.status(500).json({ message: error.message });
     }
 };
-
 
 
 export const createMultipleShopping = async (req, res) => {
