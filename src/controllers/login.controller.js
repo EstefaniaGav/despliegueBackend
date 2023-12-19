@@ -109,7 +109,7 @@ export const forgotPassword = async (req, res) => {
         }
 
         const resetToken = jwt.sign({ id: foundUser.ID_User }, TOKEN_SECRET, { expiresIn: '1h' });
-        const resetUrl = `https://demeter-front-production.up.railway.app/newPassword/${foundUser.ID_User}`;
+        const resetUrl = `http://localhost:5080/${foundUser.ID_User}`;
 
 
 
@@ -153,21 +153,14 @@ export const NewPassword = async (req, res) => {
                 ID_User: tokenDecode.id
             }
         });
-
-
         console.log('Found user:', foundUser);
-
         const passwordHast = await bcrypt.hash(Password, 10)
         await foundUser.update({ Password: passwordHast })
-
         console.log('Password updated successfully');
-
         res.cookie("passwordToken", "").json({
             msg: 'Se actualizó correctamente',
             hasError: false
         })
-
-
     } catch (error) {
         console.error('Error:', error);
         return res.status(500).json({ message: error.message, hasError: true });

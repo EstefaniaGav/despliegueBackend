@@ -15,6 +15,7 @@ export const getSuppliessByCategory = async (req, res) => {
 export const getSupplies = async (req, res) => {
     try {
         const ArraySupplies = await supplies.findAll();
+        
         res.json(ArraySupplies);
     } catch (error) {
         return res.status(500).json({ mensaje: error.message });
