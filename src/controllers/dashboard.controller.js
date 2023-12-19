@@ -83,7 +83,7 @@ export const countAllDetailsByProduct = async (req, res) => {
     try {
         const mostSoldProduct = await saleDetail.findAll({
             attributes: [
-                [sequelize.literal('products.Name_Products'), 'ProductName'],
+                [sequelize.literal('Products.Name_Products'), 'ProductName'],
                 [sequelize.fn('COUNT', sequelize.col('Product_ID')), 'detailCount'],
             ],
             include: [
