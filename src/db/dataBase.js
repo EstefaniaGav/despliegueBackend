@@ -2,16 +2,16 @@ import { Sequelize } from 'sequelize';
 
 
 const dbConfig = {
-  host: process.env.BD_HOST || "localhost",
+  host: "db4free.net" || "localhost",
   port: process.env.BD_PORT || "3306",
-  username: process.env.BD_USER || 'root',
-  password: process.env.BD_PASSWORD || "",
+  username: "estefania12345" || 'root',
+  password: "Aryastark12." || "",
   database: process.env.BD_NAME || "demeterfinal",
   dialect: 'mysql',
   define: {
     sql_mode: 'traditional',
   },
-
+ 
 }
 
 export const sequelize = new Sequelize(
