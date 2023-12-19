@@ -5,7 +5,7 @@ const PORT = process.env?.PORT || 5080
 const HOST = process.env?.HOST || "127.0.0.1"
 async function main() {
     try{
-        await sequelize.sync({force: true})
+        await sequelize.sync({force: false})
         app.listen(PORT, HOST);
         console.log('Server on port ', PORT);
     } catch (error) {
