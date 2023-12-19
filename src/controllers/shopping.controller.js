@@ -148,12 +148,19 @@ export const getShopingByProvider = async (req, res) => {
 
         // await sequelize.query("SET sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''));");
         const shoppingBySupplier = await shopping.findAll({
+            attributes: ['Datetime'],
             include: [{
                 model: supplier,
                 required: true
             }],
-            group: "Datetime"
+            group: ['Datetime']
         })
+        //     include: [{
+        //         model: supplier,
+        //         required: true
+        //     }],
+        //     group: "Datetime"
+        // })
 
         res.json(shoppingBySupplier);
     } catch (error) {

@@ -18,9 +18,7 @@ const moduleValidation = new ModuleValidationMiddleware(
     }
 )
 
-router.put("/shopping/toggleStateShoppingByDate/:date/:bool(true|false)", authRequired, moduleValidation.hasPermissions(
-    moduleValidation.MODULES.SHOPPING
-), toggleStateShoppingByDate);
+router.put("/shopping/toggleStateShoppingByDate/:date/:bool(true|false)", toggleStateShoppingByDate);
 
 router.get('/shopping', getShopping);
 router.get('/shopping/:id', getShop);
