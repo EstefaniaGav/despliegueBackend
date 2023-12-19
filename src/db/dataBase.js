@@ -7,7 +7,10 @@ const dbConfig = {
   username: process.env.BD_USER || 'root',
   password: process.env.BD_PASSWORD || "",
   database: process.env.BD_NAME || "demeterfinal",
-  dialect: 'mysql'
+  dialect: 'mysql',
+  define: {
+    sql_mode: 'traditional',
+  },
 
 }
 
