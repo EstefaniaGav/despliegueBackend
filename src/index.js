@@ -1,8 +1,8 @@
 import app from './app.js'
 import { sequelize } from './db/dataBase.js'
 
-const PORT = process.env?.PORT || 5080
-const HOST = process.env?.HOST || "127.0.0.1"
+const PORT = process.env?.MYSQLPORT || 5080
+const HOST = process.env?.MYSQLHOST || "127.0.0.1"
 async function main() {
     try{
         await sequelize.sync({force: false})

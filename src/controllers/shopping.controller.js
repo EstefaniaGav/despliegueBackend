@@ -151,7 +151,7 @@ export const getShopingByProvider = async (req, res) => {
                 model: supplier,
                 required: true
             }],
-            // group: "Datetime"
+            group: "Datetime"
         })
 
         res.json(shoppingBySupplier);
