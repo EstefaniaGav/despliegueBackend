@@ -9,10 +9,9 @@ import { getUser } from './user.controller.js';
 
 export const getCurrentUser = async (req, res) => {
 
-    const newUser = user.findOne()
+    // const newUser = user.findOne()
 
-    res.json(newUser)
-    return
+    // res.json(newUser)
     const token = req?.cookies?.token;
     const userT = jwt.decode(token, TOKEN_SECRET) || {};
     try {

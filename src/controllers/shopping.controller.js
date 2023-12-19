@@ -57,9 +57,10 @@ export const getShopingAndShopingDetails = async (req, res) => {
                 }]
             }],
         })
-
+        console.log(shoppingAndShoppingDetails)
         res.json(shoppingAndShoppingDetails);
     } catch (error) {
+        console.log("error", error)
         return res.status(500).json({ message: error.message });
     }
 };

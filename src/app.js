@@ -23,7 +23,7 @@ import moduleRoutes from './routes/module.routes.js';
 const app = express();
 
 app.use(cors({
-    origin: process.env?.FRONT_URL || 'https://desplieguedemeter-production.up.railway.app',
+    origin: process.env?.FRONT_URL || 'http://localhost:5173',
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
