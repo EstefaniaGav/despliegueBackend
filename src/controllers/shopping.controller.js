@@ -153,7 +153,7 @@ export const getShopingByProvider = async (req, res) => {
             }],
             group: "Datetime"
         })
-
+        console.log(shoppingBySupplier)
         res.json(shoppingBySupplier);
     } catch (error) {
         return res.status(500).json({ message: error.message });
